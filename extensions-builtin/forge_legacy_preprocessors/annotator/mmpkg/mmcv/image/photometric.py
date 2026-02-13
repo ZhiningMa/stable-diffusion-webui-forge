@@ -36,8 +36,8 @@ def imnormalize_(img, mean, std, to_rgb=True):
     """
     # cv2 inplace normalization does not accept uint8
     assert img.dtype != np.uint8
-    mean = np.float64(mean.reshape(1, -1))
-    stdinv = 1 / np.float64(std.reshape(1, -1))
+    mean = np.float32(mean.reshape(1, -1))
+    stdinv = 1 / np.float32(std.reshape(1, -1))
     if to_rgb:
         cv2.cvtColor(img, cv2.COLOR_BGR2RGB, img)  # inplace
     cv2.subtract(img, mean, img)  # inplace
@@ -47,8 +47,8 @@ def imnormalize_(img, mean, std, to_rgb=True):
 
 def imdenormalize(img, mean, std, to_bgr=True):
     assert img.dtype != np.uint8
-    mean = mean.reshape(1, -1).astype(np.float64)
-    std = std.reshape(1, -1).astype(np.float64)
+    mean = mean.reshape(1, -1).astype(np.float32)
+    std = std.reshape(1, -1).astype(np.float32)
     img = cv2.multiply(img, std)  # make a copy
     cv2.add(img, mean, img)  # inplace
     if to_bgr:

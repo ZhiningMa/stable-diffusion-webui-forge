@@ -113,10 +113,10 @@ def total_intersect_and_union(results,
     """
     num_imgs = len(results)
     assert len(gt_seg_maps) == num_imgs
-    total_area_intersect = torch.zeros((num_classes, ), dtype=torch.float64)
-    total_area_union = torch.zeros((num_classes, ), dtype=torch.float64)
-    total_area_pred_label = torch.zeros((num_classes, ), dtype=torch.float64)
-    total_area_label = torch.zeros((num_classes, ), dtype=torch.float64)
+    total_area_intersect = torch.zeros((num_classes, ), dtype=torch.float32)
+    total_area_union = torch.zeros((num_classes, ), dtype=torch.float32)
+    total_area_pred_label = torch.zeros((num_classes, ), dtype=torch.float32)
+    total_area_label = torch.zeros((num_classes, ), dtype=torch.float32)
     for i in range(num_imgs):
         area_intersect, area_union, area_pred_label, area_label = \
             intersect_and_union(

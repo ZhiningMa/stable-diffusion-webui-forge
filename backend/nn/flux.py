@@ -22,7 +22,7 @@ def rope(pos, dim, theta):
     if pos.device.type == "mps" or pos.device.type == "xpu":
         scale = torch.arange(0, dim, 2, dtype=torch.float32, device=pos.device) / dim
     else:
-        scale = torch.arange(0, dim, 2, dtype=torch.float64, device=pos.device) / dim
+        scale = torch.arange(0, dim, 2, dtype=torch.float32, device=pos.device) / dim
     omega = 1.0 / (theta ** scale)
 
     # out = torch.einsum("...n,d->...nd", pos, omega)

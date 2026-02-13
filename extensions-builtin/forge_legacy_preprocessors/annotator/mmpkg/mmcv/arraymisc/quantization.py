@@ -29,7 +29,7 @@ def quantize(arr, min_val, max_val, levels, dtype=np.int64):
     return quantized_arr
 
 
-def dequantize(arr, min_val, max_val, levels, dtype=np.float64):
+def dequantize(arr, min_val, max_val, levels, dtype=np.float32):
     """Dequantize an array.
 
     Args:

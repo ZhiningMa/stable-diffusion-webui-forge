@@ -328,11 +328,11 @@ def rand_log_normal(shape, loc=0., scale=1., device='cpu', dtype=torch.float32):
 
 def rand_log_logistic(shape, loc=0., scale=1., min_value=0., max_value=float('inf'), device='cpu', dtype=torch.float32):
     """Draws samples from an optionally truncated log-logistic distribution."""
-    min_value = torch.as_tensor(min_value, device=device, dtype=torch.float64)
-    max_value = torch.as_tensor(max_value, device=device, dtype=torch.float64)
+    min_value = torch.as_tensor(min_value, device=device, dtype=torch.float32)
+    max_value = torch.as_tensor(max_value, device=device, dtype=torch.float32)
     min_cdf = min_value.log().sub(loc).div(scale).sigmoid()
     max_cdf = max_value.log().sub(loc).div(scale).sigmoid()
-    u = stratified_with_settings(shape, device=device, dtype=torch.float64) * (max_cdf - min_cdf) + min_cdf
+    u = stratified_with_settings(shape, device=device, dtype=torch.float32) * (max_cdf - min_cdf) + min_cdf
     return u.logit().mul(scale).add(loc).exp().to(dtype)
 
 

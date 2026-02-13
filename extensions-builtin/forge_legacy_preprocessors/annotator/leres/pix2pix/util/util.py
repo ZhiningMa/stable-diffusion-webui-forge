@@ -73,7 +73,7 @@ def print_numpy(x, val=True, shp=False):
         val (bool) -- if print the values of the numpy array
         shp (bool) -- if print the shape of the numpy array
     """
-    x = x.astype(np.float64)
+    x = x.astype(np.float32)
     if shp:
         print('shape,', x.shape)
     if val:

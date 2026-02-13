@@ -284,7 +284,7 @@ class Q4_0(__Quant, qtype=GGMLQuantizationType.Q4_0):
         with np.errstate(divide="ignore"):
             id = np.where(d == 0, 0, 1 / d)
         # FIXME: Q4_0's reference rounding is cursed and depends on FMA
-        qs = np.trunc((np.float64(blocks) * np.float64(id)) + np.float64(8.5), dtype=np.float32).astype(np.uint8).clip(0, 15)
+        qs = np.trunc((np.float32(blocks) * np.float32(id)) + np.float32(8.5), dtype=np.float32).astype(np.uint8).clip(0, 15)
 
         qs = qs.reshape((n_blocks, 2, cls.block_size // 2))
         qs = qs[..., 0, :] | (qs[..., 1, :] << np.uint8(4))
@@ -414,7 +414,7 @@ class Q5_0(__Quant, qtype=GGMLQuantizationType.Q5_0):
         with np.errstate(divide="ignore"):
             id = np.where(d == 0, 0, 1 / d)
         # FIXME: Q5_0's reference rounding is cursed and depends on FMA
-        q = np.trunc((np.float64(blocks) * np.float64(id)) + np.float64(16.5), dtype=np.float32).astype(np.uint8).clip(0, 31)
+        q = np.trunc((np.float32(blocks) * np.float32(id)) + np.float32(16.5), dtype=np.float32).astype(np.uint8).clip(0, 31)
 
         qs = q.reshape((n_blocks, 2, cls.block_size // 2))
         qs = (qs[..., 0, :] & np.uint8(0x0F)) | (qs[..., 1, :] << np.uint8(4))

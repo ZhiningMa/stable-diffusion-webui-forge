@@ -346,7 +346,7 @@ def transform_keypoint_annotations(keypoints, transforms, image_size, keypoint_h
             mapping to flip keypoints.
     """
     # (N*3,) -> (N, 3)
-    keypoints = np.asarray(keypoints, dtype="float64").reshape(-1, 3)
+    keypoints = np.asarray(keypoints, dtype="float32").reshape(-1, 3)
     keypoints_xy = transforms.apply_coords(keypoints[:, :2])
 
     # Set all out-of-boundary points to "unlabeled"

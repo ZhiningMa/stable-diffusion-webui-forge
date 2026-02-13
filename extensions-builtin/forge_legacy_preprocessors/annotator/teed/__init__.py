@@ -48,7 +48,7 @@ class TEEDDector:
             edges = [e.detach().cpu().numpy().astype(np.float32)[0, 0] for e in edges]
             edges = [cv2.resize(e, (W, H), interpolation=cv2.INTER_LINEAR) for e in edges]
             edges = np.stack(edges, axis=2)
-            edge = 1 / (1 + np.exp(-np.mean(edges, axis=2).astype(np.float64)))
+            edge = 1 / (1 + np.exp(-np.mean(edges, axis=2).astype(np.float32)))
             if safe_steps != 0:
                 edge = safe_step(edge, safe_steps)
             edge = (edge * 255.0).clip(0, 255).astype(np.uint8)

@@ -209,8 +209,8 @@ class Script(scripts.Script):
                     mask.height - expand_pixels - mask_blur_y if is_bottom else res_h,
                 ), fill="black")
 
-                np_image = (np.asarray(img) / 255.0).astype(np.float64)
-                np_mask = (np.asarray(mask) / 255.0).astype(np.float64)
+                np_image = (np.asarray(img) / 255.0).astype(np.float32)
+                np_mask = (np.asarray(mask) / 255.0).astype(np.float32)
                 noised = get_matched_noise(np_image, np_mask, noise_q, color_variation)
                 output_images.append(Image.fromarray(np.clip(noised * 255., 0., 255.).astype(np.uint8), mode="RGB"))
 
